@@ -1,24 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import ConnectPage from "./components/connectPage";
+import DashboardPage from "./components/dashboard/Dashboard";
+
+import {
+  EthereumClient,
+  modalConnectors,
+  walletConnectProvider,
+} from "@web3modal/ethereum";
+import { Web3Modal } from "@web3modal/react";
+import { configureChains, createClient, WagmiConfig } from "wagmi";
+import { goerli, mainnet, polygon, polygonMumbai } from "wagmi/chains";
+import { Routes, Route} from "react-router-dom";
+
+
 
 function App() {
-  return (
+
+  const chains = [goerli, mainnet, polygon, polygonMumbai ];
+  const projectId = '47191616a07b6b399421f122d6f9cbf1'
+
+
+  // Wagmi client
+  const { provider } = configureChains(chains, [
+    walletConnectProvider( {projectId} ),
+  ]);
+
+  const wagmiClient = createClient({
+    autoConnect: true,
+    connectors: modalConnectors({
+      projectId,
+      version: "2", // or "2"
+      appName: "web3Task",
+      chains,
+    }),
+    provider,
+  });
+    
+  // Web3Modal Ethereum Client
+  const ethereumClient = new EthereumClient(wagmiClient, chains);  
+
+  return ( 
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <WagmiConfig client={wagmiClient}>
+        <Routes>
+          <Route exact path="/" element={<ConnectPage />} />
+          <Route exact path="/dashboard" element={<DashboardPage />} />
+        </Routes>
+      </WagmiConfig>
+
+      <Web3Modal
+        projectId={projectId}
+        ethereumClient={ethereumClient}
+        />
     </div>
+      
   );
 }
 
