@@ -1,5 +1,5 @@
 import React from "react";
-import HomePage from "./components/HomePage";import DashboardPage from "./components/dashboard/Dashboard";
+import HomePage from "./components/HomePage";import DashboardPage from "./components/dashboard/dashboard";
 import UploadPage from "./components/uploadPage/UploadPage";
 import LogoutPage from "./components/logout/LogoutPage";
 

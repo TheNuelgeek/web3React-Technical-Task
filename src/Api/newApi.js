@@ -28,8 +28,6 @@ const Api = () => {
     const offset = (page - 1) * limit;
     const url = `https://deep-index.moralis.io/api/v2/${address}/nft?${chain.id}format=decimal&limit=10&offset=${offset}`;
 
-    // console.log('offset:', offset)
-
     const moralisApiKey =  process.env.REACT_APP_MORALIS_APPLICATION_ID
     const options = {
       headers: {
@@ -42,7 +40,6 @@ const Api = () => {
     try {
       const response = await fetch(url, options);
       const data = await response.json();
-      console.log(data);
       setNfts(data.result);
       let total;
       if(data.total === null){
@@ -51,7 +48,6 @@ const Api = () => {
         total = data.total/limit
       }
       setTotalPages(Math.ceil(total));
-      console.log('totalP:', totalPages)
       setCurrentPage(page);
     } catch (error) {
       console.error(error);

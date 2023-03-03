@@ -9,7 +9,7 @@ function Header(){
     const { address} = useAccount()
     const { data} = useBalance({ address: address})
   
-    const bal = parseFloat(data?.formatted).toFixed(4)
+    const balance = parseFloat(data?.formatted).toFixed(4)
     const first4 = address.substring(0, 4);
     const last4 = address.substring(address.length - 4)
 
@@ -17,7 +17,7 @@ function Header(){
         <header>
             <div className="wallet--details">
                 <p className="user">Wallet Address: {first4}....{last4}</p>
-                <p className="user">Bal: {bal} {data?.symbol}</p>
+                <p className="user">Bal: {balance} {data?.symbol}</p>
                 <DisconnectBtn />
             </div> 
         </header>

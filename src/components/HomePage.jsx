@@ -1,7 +1,7 @@
 import React from "react";
 import { Web3Button } from "@web3modal/react";
 import {useAccount} from 'wagmi'
-import DashboardPage from "./dashboard/Dashboard";
+import DashboardPage from "./dashboard/dashboard";
 
 /*
     This is a React component named HomePage that displays a 

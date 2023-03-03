@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../header/header";
 import Api from "../../Api/newApi";
-import ThirdPageBtn from "../buttons/ThirdPageBtn";
+import ThirdPageBtn from "../buttons/thirdPageBtn";
 
 
 function DashboardPage() {
