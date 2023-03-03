@@ -1,6 +1,7 @@
 import React from "react";
 import HomePage from "./components/HomePage";
 import DashboardPage from "./components/dashboard/Dashboard";
+import UploadPage from "./components/uploadPage/UploadPage";
 
 import {
   EthereumClient,
@@ -45,6 +46,7 @@ function App() {
         <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/dashboard" element={<DashboardPage />} />
+        <Route exact path="/uploadPage" element={<UploadPage />} />
         </Routes>
       </WagmiConfig>
 
