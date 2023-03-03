@@ -26,7 +26,7 @@ import { Routes, Route} from 'react-router-dom';
 function App() {
 
   const chains = [goerli, mainnet, polygon, polygonMumbai ];
-  const projectId = '47191616a07b6b399421f122d6f9cbf1'
+  const projectId = process.env.REACT_APP_PROJECT_ID;
 
 
   // Wagmi client
