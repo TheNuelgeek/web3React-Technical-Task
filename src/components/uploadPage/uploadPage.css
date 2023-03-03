@@ -1,0 +1,61 @@
+/* <Table striped responsive className="file-table"> */
+
+.upload{
+    text-align: center;
+    margin-top: 50px;
+    font-weight: bold;
+}
+
+.upload--Page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    margin: 30px auto;
+    width: auto;
+    max-width: 700px;
+    text-align: center;
+    background-color: #0d6efd;
+    cursor: pointer;
+    border: 1px solid #5f1111;
+    border-radius: 15px;
+    /* margin-top: 50px; */
+}
+
+.upload--btn{
+    margin: 20px auto;
+    text-align: center;
+    display: flex;
+}
+
+.table--headers{
+    color: white;
+}
+
+.selected{
+    text-align: center;
+}
+
+.drop--text{
+    border: dotted 2px white;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.tb--mg{
+
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.file-table {
+    margin-top: 20px;
+    color: white;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .file-table {
+      font-size: 0.8rem;
+    }
+  }
+  

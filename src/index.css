@@ -3,22 +3,173 @@
 }
 
 body{
-  background: black;
+  
   color: white;
-  /* background: linear-gradient(230.84deg, #206F49 17.76%, #181433 122.7%); */
-  /* background-repeat: no-repeat; */
-  /* background-size:cover; */
-  /* height: 100%; */
+  background: black;
+  /* background: linear-gradient(180deg, #030303 0%, #001252 100%);  color: white; */
+  /* background-repeat:no-repeat;
+  background-size: cover; */
+  /* background-image: url('https://img.freepik.com/free-photo/vivid-blurred-colorful-wallpaper-background_58702-2460.jpg?t=st=1677555561~exp=1677556161~hmac=671bf0b246da70c42e0908447649e1ae2475749e4a32f2721379035151bdc8d0'); */
+  
+
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0 30px;
+}
+
+body::before{
+  content: ""; /* create an empty content */
+  position: absolute; /* position the pseudo-element */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://img.freepik.com/free-photo/vivid-blurred-colorful-wallpaper-background_58702-2460.jpg?t=st=1677555561~exp=1677556161~hmac=671bf0b246da70c42e0908447649e1ae2475749e4a32f2721379035151bdc8d0'); /* specify the image to blur */
+  filter: blur(5px); 
+  opacity: 0.4;
+  z-index: -1; 
+  background-repeat:no-repeat;
+  background-size: cover;
+ 
+  
 }
 
 .hero--page{
   text-align: center;
-  margin-top: 250px;
+  margin: 80px auto;
 }
 
 .hero--text{
   font-family: 'Climate Crisis', cursive;
   letter-spacing: 2px;
   font-size: 60px;
+  margin-bottom: 40px;
+  margin-top: 200px;
+}
+
+.hero--sl--text{
+  margin: 30px auto;
+}
+
+.wallet--details{
+  margin-top: 20px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 70px;
+}
+
+.user{
+  font-weight:normal;
+  border: 2px solid #FFFFFF;
+  border-radius: 8px;
+  width: auto;
+  height: 50px;
+  padding: 10px;
+  margin-top: 16px;
+}
+
+.disconnect--btn{
+  color: black;
+  font-weight: bold;
+  background: #FFFFFF;
+  border-radius: 8px;
+  width: 288px;
+  height: 58px;
+  border: none;
+}
+
+.pagination{
+  margin: 10px auto;
+}
+
+.third--btn{
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  background: #0a58ca;
+  border-radius: 8px;
+  width: 288px;
+  height: 58px;
+  border: none;
+  margin-top: 100px;
+}
+
+.logout--pg{
+  text-align: center;
+  margin: 300px auto;
+  background-color: rgb(24, 22, 22);
+  border-radius: 8px;
+  height: 250px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.logout--btn{
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  background: #0a58ca;
+  border-radius: 8px;
+  width: 200px;
+  height: 58px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+
+}
+
+.logout--btn:hover{
+  text-decoration: none;
+  color: white;
+}
+
+.table{
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (max-width:839px) {
+  .wallet--details{
+    flex-direction: column;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .logout--pg{
+    text-align: center;
+    margin: 300px auto;
+    background-color: transparent;
+    border-radius: 8px;
+    height: auto;
+    width: auto;
+  }
+
+  .logout--btn{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    background: #0a58ca;
+    border-radius: 8px;
+    width: 200px;
+    height: 50px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  
+  }
+
+  .third--btn{
+    border-radius: 8px;
+    width: 200px;
+    height: 58px;
+    border: none;
+    margin-top: 100px;
+  }
 }

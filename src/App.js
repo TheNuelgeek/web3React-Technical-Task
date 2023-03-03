@@ -10,7 +10,7 @@ import {
 import { Web3Modal } from "@web3modal/react";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { goerli, mainnet, polygon, polygonMumbai } from "wagmi/chains";
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route} from 'react-router-dom';
 
 
 
@@ -43,8 +43,8 @@ function App() {
     <div className="App">
       <WagmiConfig client={wagmiClient}>
         <Routes>
-          <Route exact path="/" element={<ConnectPage />} />
-          <Route exact path="/dashboard" element={<DashboardPage />} />
+        <Route exact path="/" element={<ConnectPage />} />
+        <Route exact path="/dashboard" element={<DashboardPage />} />
         </Routes>
       </WagmiConfig>
 
