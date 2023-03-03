@@ -1,5 +1,5 @@
 import React from "react";
-import ConnectPage from "./components/connectPage";
+import HomePage from "./components/HomePage";
 import DashboardPage from "./components/dashboard/Dashboard";
 
 import {
@@ -43,7 +43,7 @@ function App() {
     <div className="App">
       <WagmiConfig client={wagmiClient}>
         <Routes>
-        <Route exact path="/" element={<ConnectPage />} />
+        <Route exact path="/" element={<HomePage />} />
         <Route exact path="/dashboard" element={<DashboardPage />} />
         </Routes>
       </WagmiConfig>
