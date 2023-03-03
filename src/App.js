@@ -1,7 +1,7 @@
 import React from "react";
-import HomePage from "./components/HomePage";
-import DashboardPage from "./components/dashboard/Dashboard";
+import HomePage from "./components/HomePage";import DashboardPage from "./components/dashboard/Dashboard";
 import UploadPage from "./components/uploadPage/UploadPage";
+import LogoutPage from "./components/logout/LogoutPage";
 
 import {
   EthereumClient,
@@ -13,6 +13,14 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { goerli, mainnet, polygon, polygonMumbai } from "wagmi/chains";
 import { Routes, Route} from 'react-router-dom';
 
+/**
+ * The code imports various components and libraries, including EthereumClient, 
+ * Web3Modal, and various chains. It defines a function component called App 
+ * that creates instances of the Wagmi client and the Web3Modal Ethereum client. T
+ * he component returns JSX code that renders v  arious routes for different pages and 
+ * a Web3Modal component for connecting to a wallet.
+ * 
+ */
 
 
 function App() {
@@ -45,8 +53,8 @@ function App() {
       <WagmiConfig client={wagmiClient}>
         <Routes>
         <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/dashboard" element={<DashboardPage />} />
         <Route exact path="/uploadPage" element={<UploadPage />} />
+        <Route exact path="/logout" element={<LogoutPage />} />
         </Routes>
       </WagmiConfig>
 

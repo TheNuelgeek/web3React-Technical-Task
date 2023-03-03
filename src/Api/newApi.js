@@ -21,14 +21,14 @@ const Api = () => {
   const { address } = useAccount();
   const { chain} = useNetwork();
   const limit = 10;
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);;
   const [totalPages, setTotalPages] = useState(1);
 
   const fetchNfts = async (page) => {
     const offset = (page - 1) * limit;
     const url = `https://deep-index.moralis.io/api/v2/${address}/nft?${chain.id}format=decimal&limit=10&offset=${offset}`;
 
-    console.log('offset:', offset)
+    // console.log('offset:', offset)
 
     const moralisApiKey =  process.env.REACT_APP_MORALIS_APPLICATION_ID
     const options = {
@@ -38,12 +38,19 @@ const Api = () => {
       },
     };
 
+    // Return Nfts from a wallet
     try {
       const response = await fetch(url, options);
       const data = await response.json();
       console.log(data);
       setNfts(data.result);
-      setTotalPages(Math.ceil(data.total / limit));
+      let total;
+      if(data.total === null){
+        total = 3
+      }else{
+        total = data.total/limit
+      }
+      setTotalPages(Math.ceil(total));
       console.log('totalP:', totalPages)
       setCurrentPage(page);
     } catch (error) {
@@ -53,64 +60,64 @@ const Api = () => {
 
   useEffect(() => {
     fetchNfts(1);
-  }, [address, chain]);
+  }, [address, chain, currentPage]);
 
   console.log('resultNew:',nfts)
+
   const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    localStorage.setItem("currentPage", pageNumber);
     fetchNfts(pageNumber);
+  };
+  
+  // Render items in the pagination
+  const renderPaginationItems = () => {
+    const items = [];
+    for (let number = 1; number <= totalPages; number++) {
+      items.push(
+        <Pagination.Item
+          key={number}
+          active={number === currentPage}
+          onClick={() => handlePageChange(number)}
+        >
+          {number}
+        </Pagination.Item>
+      );
+    }
+    return items;
   };
 
 
-
-    let active = currentPage;
-    let items = [];
-    for (let number = 1; number <= 5; number++) {
-    items.push(
-        <Pagination.Item key={number} active={number === active}>
-        {number}
-        </Pagination.Item>,
-    );
-    }
-
   return (
     <div>
-        <Table responsive striped bordered hover variant="dark" className="table">
+      <Table responsive striped bordered hover variant="dark" className="table">
         <thead>
-            <tr>
+          <tr>
             <th>Token ID</th>
             <th>Name</th>
             <th>Contract Address</th>
-            </tr>
+          </tr>
         </thead>
         <tbody>
-            {nfts?.map((nft) => (
+          {nfts?.map((nft) => (
             <tr key={nft.block_number}>
-                <td>{nft.token_id}</td>
-                <td>{nft.name ? nft.name : "No name"}</td>
-                <td>{nft.token_address}</td>
+              <td>{nft.token_id}</td>
+              <td>{nft.name ? nft.name : "No name"}</td>
+              <td>{nft.token_address}</td>
             </tr>
-            ))}
+          ))}
         </tbody>
-        </Table>
+      </Table>
 
-
-      <div className="pagination">
-        {/* <Pagination>
-            {Array.from({ length: totalPages }, (_, index) => (
-            <Pagination.Item
-                key={index}
-                active={index + 1 === currentPage}
-                onClick={() => handlePageChange(index + 1)}
-            >
-                {index + 1}
-            </Pagination.Item>
-            ))}
-        </Pagination> */}
-       <Pagination>{items}</Pagination>
-      </div>
-
+      {/* conditionally render the Pagination component */}
+      {totalPages && totalPages > 1 && (
+        <div className="pagination">
+          <Pagination>{renderPaginationItems()}</Pagination>
+        </div>
+      )}
     </div>
   );
+
 };
 
 export default Api;
