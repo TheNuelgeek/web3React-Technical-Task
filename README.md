@@ -31,6 +31,7 @@ The app allows users to:
 - Fetch data from the Moralis API and display it on the UI
 - Paginate through the data
 - Log out of the app
+- Upload files to IPFS and returns a link to view the file
 
 ## Contributions
 

@@ -9,7 +9,7 @@ import React from "react";
  *  This function is called when the user clicks on the link
  *  to go back to the login page.
  * 
- */
+*/
 
 function LogoutPage(){
     
