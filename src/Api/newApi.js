@@ -43,7 +43,7 @@ const Api = () => {
       setNfts(data.result);
       let total;
       if(data.total === null){
-        total = 3
+        total = 1
       }else{
         total = data.total/limit
       }
