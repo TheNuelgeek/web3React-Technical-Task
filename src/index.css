@@ -77,6 +77,10 @@ body::before{
 
 }
 
+.pagination--note{
+  margin-top: 19px;
+}
+
 
 .third--btn{
   color: rgb(255, 255, 255);

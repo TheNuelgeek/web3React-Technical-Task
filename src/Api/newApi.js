@@ -111,7 +111,7 @@ const Api = () => {
           <Pagination>{renderPaginationItems()}</Pagination>
         </div>
       )}
-      <p>Note: pagination won't work if you don't have more than 10 Nfts in this Network</p>
+      <p className="pagination--note">Note: pagination won't work if you don't have more than 10 Nfts in this Network</p>
     </div>
   );
 
