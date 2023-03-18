@@ -2,6 +2,7 @@ import React from "react";
 import { Web3Button } from "@web3modal/react";
 import {useAccount} from 'wagmi'
 import DashboardPage from "./dashboard/dashboard";
+import cloudImg from './image/cloud.svg'
 
 /*
     This is a React component named HomePage that displays a 
@@ -19,9 +20,11 @@ function HomePage(){
         <div className="hero--page">
             {address !== '' && !isConnected  ? (
             <div> 
-                <h1 className="hero--text">Web3 Task</h1>
+                <h1 className="hero--text">Tao Kloud</h1>
                 <Web3Button />
                 <p className="hero--sl--text">Connect wallet to view your dashboard</p>
+                <img src={cloudImg} alt="" className="alt-img"/>
+                <p>Built By <a href="https://twitter.com/theNuelgeek" target="_blank" rel="noreferrer">Nuelgeek</a></p>
             </div>
             ):(
                 <DashboardPage/>

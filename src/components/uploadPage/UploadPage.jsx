@@ -4,8 +4,8 @@ import { Table, Button, Image } from "react-bootstrap";
 import Header from "../header/header";
 import { Web3Storage } from 'web3.storage'
 import './uploadPage.css'
-// import dotenv from 'dotenv';
-// dotenv.config();
+import { Web3Button } from "@web3modal/react";
+import {useAccount} from 'wagmi'
 
 
 /**
@@ -29,6 +29,7 @@ function UploadPage() {
     const [uploading, setUploading] = useState(false);
     const [fileUrls, setFileUrls] = useState([]);
     const [link, setLink] = useState("");
+    const {isConnected, address} = useAccount();
     
     // A function to select file
     const onDrop = useMemo(
@@ -112,73 +113,83 @@ function UploadPage() {
 
   return (
     <div>
-      <Header />
-      <h1 className="upload">Upload File</h1>
-        <div className="upload--Page" {...getRootProps()}>
-        <input {...getInputProps()} disabled={uploading} />
-        {isDragActive ? (
-            <p>Drop the files here ...</p>
-        ) : (
-            <p className="drop--text">Click here/ Drop some files here to <br/> upload files to IPFS</p>
-        )}
-        </div>
-        {files.length > 0 && (
+      {address  && isConnected  ? (
         <div>
-            <h4 className="selected">Selected Files:</h4>
-            <Table striped responsive className="file-table">
-            <thead>
-                <tr>
-                <th>Preview</th>
-                <th>File Name</th>
-                <th>Link</th>
-                <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                {files.map((file) => (
-                <tr key={file.name}>
-                    <td>
-                    {file.type.includes("image") ? (
-                        <img
-                        src={file.preview}
-                        alt={file.name}
-                        style={{ maxWidth: 400 }}
-                        />
-                    ) : (
-                        <div>{file.name}</div>
-                    )}
-                    </td>
-                    <td>{file.name}</td>
-                    <td>
-                    {link && (
-                        <a href={link} target="_blank" rel="noreferrer">
-                        {link}
-                        </a>
-                    )}
-                    </td>
-                    <td>
-                    <Button
-                        variant="danger"
-                        onClick={() => handleDelete(file)}
-                        disabled={uploading}
-                    >
-                        Delete
-                    </Button>
-                    </td>
-                </tr>
-                ))}
-            </tbody>
-            </Table>
-            <Button
-            className="upload--btn"
-            variant="primary"
-            onClick={uploadToWeb3Storage}
-            disabled={uploading || !files.length}
-            >
-            {uploading ? "Uploading..." : "Upload to IPFS"}
-            </Button>
+
+          <Header />
+          <h1 className="upload">Upload File</h1>
+            <div className="upload--Page" {...getRootProps()}>
+            <input {...getInputProps()} disabled={uploading} />
+            {isDragActive ? (
+                <p>Drop the files here ...</p>
+            ) : (
+                <p className="drop--text">Click here/ Drop some files here to <br/> upload files to IPFS</p>
+            )}
+            </div>
+            {files.length > 0 && (
+            <div>
+                <h4 className="selected">Selected Files:</h4>
+                <Table striped responsive className="file-table">
+                <thead>
+                    <tr>
+                    <th>Preview</th>
+                    <th>File Name</th>
+                    <th>Link</th>
+                    <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {files.map((file) => (
+                    <tr key={file.name}>
+                        <td>
+                        {file.type.includes("image") ? (
+                            <img
+                            src={file.preview}
+                            alt={file.name}
+                            style={{ maxWidth: 400 }}
+                            />
+                        ) : (
+                            <div>{file.name}</div>
+                        )}
+                        </td>
+                        <td>{file.name}</td>
+                        <td>
+                        {link && (
+                            <a href={link} target="_blank" rel="noreferrer">
+                            {link}
+                            </a>
+                        )}
+                        </td>
+                        <td>
+                        <Button
+                            variant="danger"
+                            onClick={() => handleDelete(file)}
+                            disabled={uploading}
+                        >
+                            Delete
+                        </Button>
+                        </td>
+                    </tr>
+                    ))}
+                </tbody>
+                </Table>
+                <Button
+                className="upload--btn"
+                variant="primary"
+                onClick={uploadToWeb3Storage}
+                disabled={uploading || !files.length}
+                >
+                {uploading ? "Uploading..." : "Upload to IPFS"}
+                </Button>
+            </div>
+            )}
         </div>
-        )}
+      ):(
+        <div className="not-connected">
+          <Web3Button />
+          <p className="hero--sl--text">Connect wallet to view your dashboard</p>
+        </div>
+      )}
 
     </div>
   );

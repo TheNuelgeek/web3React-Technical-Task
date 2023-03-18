@@ -29,6 +29,7 @@ body::before{
 .hero--page{
   text-align: center;
   margin: 80px auto;
+  /* overflow: hidden; */
 }
 
 .hero--text{
@@ -36,11 +37,20 @@ body::before{
   letter-spacing: 2px;
   font-size: 60px;
   margin-bottom: 40px;
-  margin-top: 200px;
+  margin-top: 100px;
 }
 
 .hero--sl--text{
   margin: 30px auto;
+}
+
+.alt-img{
+  width: 700px;
+}
+
+.not-connected{
+  text-align: center;
+  margin-top: 300px;
 }
 
 .wallet--details{
@@ -134,6 +144,12 @@ body::before{
 }
 
 @media (max-width:839px) {
+
+  .alt-img{
+    overflow: hidden;
+    width: 250px;
+  }
+
   .wallet--details{
     flex-direction: column;
     gap: 15px;
